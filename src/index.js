@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express=require("express");
 const { port } = require('./config/serverConfig');    
   //require("dotenv").config();
@@ -20,3 +21,6 @@ setupAndStartServer();
 
 
  
+=======
+
+>>>>>>> 046ac4f75b99e98b72a81183c13a93db40977e1a
