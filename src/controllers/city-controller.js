@@ -1,15 +1,15 @@
-const { CityService, CityService } = require("../services/index");
+const { CityService } = require("../services/index");
 
-const CityService = new CityService();
+const cityService = new CityService();
 
 const create = async (req, res) => {
   try {
-    const city = await CityService.createCity(req.body);
+    const city = await cityService.createCity(req.body);
     return res.status(201).json({
       data: city,
       success: true,
       message: "Successfully created a city",
-      err: {},
+      err: {}
     });
   } catch (error) {
     console.log(error);
@@ -24,7 +24,7 @@ const create = async (req, res) => {
   // DELETE -> /CITY/:ID 
 const destroy = async (req, res) => {
   try {
-    const response = await CityService.deleteCity(req.params.id);
+    const response = await cityService.deleteCity(req.params.id);
     return res.status(200).json({
       data: response,
       success: true,
@@ -45,7 +45,7 @@ const destroy = async (req, res) => {
   // GET -> /CITY/:id
     const get= async (req ,res) =>{
         try {
-    const response = await CityService.getCity(req.params.id);
+    const response = await cityService.getCity(req.params.id);
     return res.status(200).json({
       data: response,
       success: true,
@@ -68,7 +68,7 @@ const destroy = async (req, res) => {
   // Patch => /city/:id -> req.body
  const update = async(req, res) =>{
     try {
-        const response = await CityService.getCity(req.params.id, req.body);
+        const response = await cityService.getCity(req.params.id, req.body);
     return res.status(200).json({
       data: response,
       success: true,
@@ -87,5 +87,12 @@ const destroy = async (req, res) => {
 
         
     }
+ }
+
+ module.exports={
+    create, 
+    destroy,
+    get,
+    update
  }
     
