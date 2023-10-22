@@ -1,19 +1,19 @@
 const { City } =require('../models');
 
-class CityRepository{
+class CityRepository {
     async createCity({ name }){
-        try{
+        try {
             const city =await City.create({
                  name 
                 });
             return city;
-        } catch(error){
+        } catch(error) {
             console.log("Something went wrong in the repository layer");
             throw {error};
         }
     }
 
-    async deleteCity(cityId){
+    async deleteCity(cityId) {
         try{
             await City.destroy({
                 where: {
@@ -21,13 +21,13 @@ class CityRepository{
                 }
         });
         return true ;
-    } catch(error){
+    } catch(error) {
         console.log("Something went wrong in the repository layer");
        throw(error);
     }
 }
 
-    async updateCity(cityId , data){
+    async updateCity(cityId , data) {
         try {
             // The below approach also works but will not return updated object
             // If we are using Pg then returning : true can be used , else not
@@ -42,13 +42,13 @@ class CityRepository{
             city.name = data.name;
              await city.save();
             return city;
-        } catch (error){
+        } catch (error) {
             console.log("Something went wrong in the repository layer");
             throw {error};
         }
     }
 
-    async getCity(cityId){
+    async getCity(cityId) {
         try {
             const city=await City.findByPk(cityId);
             return city;
@@ -57,6 +57,15 @@ class CityRepository{
             throw {error};
         }
     }
+    async getAllCities() {
+        try {
+            const cities = await City.findAll();
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer");
+            throw {error};
+        }
+    }
 }
 
-module.exports=CityRepository;
+module.exports = CityRepository;
